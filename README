@@ -1,1 +1,7 @@
 #краткое описание проекта и инструкции по запуску тестов
+запуск всех тестов
+python -m pytest -v
+
+запуск одного теста
+python -m pytest selenium_tests/test_cart.py -v
+
