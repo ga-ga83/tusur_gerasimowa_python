@@ -61,10 +61,3 @@ class BasePage:
         except TimeoutException:
             return []
 
-    #def wait_until_element_absent(self, locator, timeout=10):
-        """Ждёт, пока элементы по локатору исчезнут. Возвращает True, если исчезли."""
-        # Временный wait с нужным таймаутом (не передаём timeout в until!)
-        temp_wait = type(self.wait)(self.driver, timeout)
-        return temp_wait.until(
-            lambda d: len(self.find_elements_no_wait(locator, short_timeout=0.5)) == 0
-        )

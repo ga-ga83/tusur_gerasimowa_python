@@ -4,12 +4,13 @@ from .base_page import BasePage
 class ShopPage(BasePage):
     CART_ICON = (By.CLASS_NAME, "shopping_cart_link")
     ADD_TO_CART_BUTTONS = (By.XPATH, "//button[contains(@class, 'btn_primary')]")
-    REMOVE_FROM_CART_BUTTON = (By.XPATH, "//*[@class='btn btn_secondary btn_small cart_button']")
-    REMOVE_FROM_CART_BUTTONS = (By.XPATH, "//*[@class='btn btn_secondary btn_small btn_inventory ']")
+    REMOVE_FROM_CART_BUTTON = (By.XPATH, "//button[normalize-space()='Remove']")
+    REMOVE_FROM_CART_BUTTONS = (By.XPATH, "//button[normalize-space()='Remove']")
     CHECKOUT_BUTTON = (By.ID, "checkout")
     ITEM_TITLE = (By.CSS_SELECTOR, ".inventory_item_name")
     LOGO_TITLE = (By.XPATH, "//*[@class='app_logo']")
     CART_BADGE = (By.CLASS_NAME, "shopping_cart_badge")
+    CART_ICON_BADGE = (By.CLASS_NAME, "shopping_cart_badge")
 
     FIRST_NAME_INPUT = (By.ID, "first-name")
     LAST_NAME_INPUT = (By.ID, "last-name")
@@ -40,6 +41,14 @@ class ShopPage(BasePage):
             badge = self.find_element(self.CART_BADGE)
             return int(badge.text) if badge.text else 0
         return 0
+
+    def get_cart_badge_count(self):
+        #счетчик количества товаров в корзине
+        try:
+            badge = self.find_element(self.CART_ICON_BADGE)
+            return int(badge.text)
+        except:
+            return 0
 
     def open_checkout(self):
         self.click(self.CHECKOUT_BUTTON)

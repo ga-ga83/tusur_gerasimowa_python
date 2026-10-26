@@ -5,3 +5,10 @@ python -m pytest -v
 запуск одного теста
 python -m pytest selenium_tests/test_cart.py -v
 
+
+формирование отчета с помощью команды
+pytest --alluredir=allure-results
+allure generate allure-results --clean -o allure-report
+allure open allure-report
+очистка папки с результатами перед новым запуском тестов
+rm -rf allure-results
